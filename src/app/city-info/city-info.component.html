@@ -1,0 +1,40 @@
+<div  class="main">
+  <nav>
+    <ul class="options units">
+        <button [routerLink]="['/weather']" class="celcius">Weather</button>
+    </ul>
+  </nav>
+  <div class="cards" id="weather-cards"></div>
+  <div  class="highlights">
+    <h2 class="heading">Info city</h2>
+    <div class="cards">
+      <div class="card2">
+        <h4 class="card-heading">City</h4>
+        <div class="content">
+          <p>{{weatherData?.location?.name}}</p>
+        </div>
+      </div>
+      <div class="card2">
+        <h4 class="card-heading">Local Time</h4>
+        <div class="content">
+          <p>{{weatherData?.location?.localtime  | date: 'dd MMM yyyy HH:mm a'}}</p>
+        </div>
+      </div>
+      <div class="card2">
+        <h4 class="card-heading">Country</h4>
+        <div class="content">
+          <p>{{weatherData?.location?.country}}</p>
+        </div>
+      </div>
+      <div class="card2">
+        <h4 class="card-heading">Region</h4>
+        <div class="content">
+          <p>{{weatherData?.location?.region}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+
+  </div>
+</div>

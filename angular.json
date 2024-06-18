@@ -20,6 +20,7 @@
             "outputPath": "dist/geolocation-app",
             "index": "src/index.html",
             "browser": "src/main.ts",
+
             "polyfills": [
               "zone.js"
             ],
@@ -30,14 +31,14 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+             
+              "src/styles.scss",
+              "./node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
             "scripts": [],
-            "server": "src/main.server.ts",
-            "prerender": true,
-            "ssr": {
-              "entry": "server.ts"
-            }
+           "server": "src/main.server.ts",
+              "prerender": false,
+              "ssr": false
           },
           "configurations": {
             "production": {
@@ -94,8 +95,10 @@
               "src/favicon.ico",
               "src/assets"
             ],
-            "styles": [
-              "src/styles.scss"
+           "styles": [
+              
+              "src/styles.scss",
+              "./node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
             "scripts": []
           }

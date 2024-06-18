@@ -1,0 +1,110 @@
+
+
+
+<body>
+  <div class="wrapper">
+    <div class="sidebar">
+      <div>
+        <form class="search" id="search">
+          <input appOnlyText type="text" id="query" [(ngModel)]="city" [ngModelOptions]="{standalone: true}" placeholder="Search..." />
+          <button (click)="getWeather()">
+            <fa-icon [icon]="faSearch"></fa-icon>
+          </button>
+        </form>
+        <app-map></app-map>
+
+        <div *ngIf="isLoading" class="loading-overlay">
+          <div class="spinner"></div>
+          <p>Loading...</p>
+        </div>
+
+        <div *ngIf="!isLoading">
+          <div class="weather-icon">
+            <img [src]="weatherData?.current?.condition?.icon" alt="Weather Icon">
+          </div>
+          <div class="temperature">
+            <h1 *ngIf="isCelsius" id="temp">{{ convertToCelsius(weatherData?.current?.temp_c) }}°C</h1>
+            <h1 *ngIf="!isCelsius" id="temp">{{ convertToFahrenheit(weatherData?.current?.temp_f) }}°F</h1>
+          </div>
+          <div class="date-time">
+            <p style="text-align: center;" id="date-time">{{ localDayOfWeek }}, {{ localTime }}</p>
+          </div>
+          <div class="divider"></div>
+        </div>
+
+        <div class="location">
+          <div class="location-icon">
+            <i class="fas fa-map-marker-alt"></i>
+          </div>
+          <div class="location-text">
+            <p id="location"><b>Location:</b> {{weatherData?.location?.name}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="main">
+      <nav>
+        <ul class="options units">
+          <li>
+            <button class="celcius" [ngClass]="{ 'active': isCelsius, 'inactive': !isCelsius }" (click)="setCelsius()">°C</button>
+          </li>
+          <li>
+            <button class="fahrenheit" [ngClass]="{ 'active': !isCelsius, 'inactive': isCelsius }" (click)="setFahrenheit()">°F</button>
+          </li>
+          <li>
+            <button [routerLink]="['/city-info', weatherData?.location?.lat, weatherData?.location?.lon, city]" class="route">City-Info</button>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="cards" id="weather-cards"></div>
+
+      <div class="highlights">
+        <h2 class="heading">today's highlights</h2>
+        <div class="cards">
+          <div class="card2">
+            <h4 class="card-heading">Weather</h4>
+            <div class="content">
+              <p class="uv-index" style="font-size: 25px;">{{weatherData?.current?.condition?.text}}</p>
+            </div>
+          </div>
+          <div class="card2">
+            <h4 class="card-heading">Wind Status</h4>
+            <div class="content">
+              <p class="wind-speed">{{weatherData?.current?.wind_kph}}</p>
+              <p>km/h</p>
+            </div>
+          </div>
+          <div class="card2">
+            <h4 class="card-heading">Cloud</h4>
+            <div class="content">
+              <p class="sun-rise">{{ weatherData?.current?.cloud }}%</p>
+            </div>
+          </div>
+          <div class="card2">
+            <h4 class="card-heading">Humidness</h4>
+            <div class="content">
+              <p class="humidity">{{weatherData?.current?.humidity}}%</p>
+            </div>
+          </div>
+          <div class="card2">
+            <h4 class="card-heading">Visibility</h4>
+            <div class="content">
+              <p class="visibilty">{{weatherData?.current?.vis_km}}</p>
+              <p>km/h</p>
+            </div>
+          </div>
+          <div class="card2">
+            <h4 class="card-heading">Uv</h4>
+            <div class="content">
+              <p class="air-quality">{{weatherData?.current?.uv}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+
