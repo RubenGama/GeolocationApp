@@ -53,25 +53,6 @@ export class WeatherComponent {
 
   }
 
-  
-
-  // getWheather() {
-  //   if (this.city) {
-  //     this.weatherService.getWheather(this.city).subscribe((data) => {
-  //       this.weatherData = data;
-  //       const lat = this.weatherData?.location?.lat;
-  //       const lon = this.weatherData?.location?.lon;
-  //       if (lat !== undefined && lon !== undefined) {
-  //         this.weatherService.updateLocation(lat, lon);
-  //         this.getLocationDetails();
-  //       } else {
-  //         console.error('Latitude or Longitude is undefined in weather data');
-  //         this.location = 'Location not available';
-  //       }
-  //     });
-  //   }
-  // }
-
   getWeather(): void {
     if (this.city) {
       this.isLoading = true; // Ativa o spinner ao iniciar o carregamento
@@ -146,26 +127,6 @@ export class WeatherComponent {
   convertToFahrenheit(fahrenheit: number): number {
     return Math.round(fahrenheit);
   }
-
-  // detectLocation(): void {
-  //   if (navigator.geolocation) {
-  //     navigator.geolocation.getCurrentPosition(
-  //       (position) => {
-  //         this.detectLat = position.coords.latitude;
-  //         this.detectLon = position.coords.longitude;
-  //         this.getCityFromCoordinates(this.detectLat, this.detectLon);
-  //       },
-  //       (error) => {
-  //         console.error('Error detecting location:', error);
-  //         this.location = 'Location not available';
-  //       }
-  //     );
-  //   } else {
-  //     this.location = 'Geolocation is not supported by this browser.';
-  //   }
-  // }
-
- 
 
   getLocationDetails() {
     const location = this.weatherData?.location;
